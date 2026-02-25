@@ -5,11 +5,11 @@
 
 let started = false;
 
-// -------- Audio chain (delete reverb/filter if you want even simpler)
+// Audio chain
 const bus = new Tone.Gain(0.9);
 bus.chain(Tone.Destination);
 
-// -------- Drums (simple)
+// Drums (simple)
 const kick = new Tone.MembraneSynth({
     envelope: { attack: 0.001, decay: 0.25, sustain: 0, release: 0.05 },
 }).connect(bus);
@@ -46,17 +46,13 @@ const sampleB = new Tone.MembraneSynth({
     pitchDecay: .05,
     octaves: 6,
     oscillator: { type: "sine" },
-    envelope: { 
-        attack: 0.001, 
-        decay: 0.9, 
-        sustain: 0, 
-        release: 0.8 },
+    envelope: { attack: 0.001, decay: 0.9, sustain: 0, release: 0.8 },
 }).connect(bus);
 
 let player5 = null;
 let player6 = null;
 
-// -------- DOM
+// DOM
 const padsEl = document.getElementById("pads");
 const padEls = [...padsEl.querySelectorAll(".pad")];
 
@@ -67,7 +63,7 @@ const meta6 = document.getElementById("meta6");
 
 const stopBtn = document.getElementById("stopBtn");
 
-// -------- helpers
+// helpers
 function flashPad(padIndex) {
     const el = padEls.find((p) => Number(p.dataset.pad) === padIndex);
     if (!el) return;
@@ -81,7 +77,7 @@ async function ensureAudioStarted() {
     started = true;
 }
 
-// -------- main trigger
+// main trigger
 async function triggerPad(padIndex) {
     await ensureAudioStarted();
     flashPad(padIndex);
@@ -110,14 +106,14 @@ async function triggerPad(padIndex) {
     }
 }
 
-// -------- click pads
+// click pads
 padsEl.addEventListener("click", (e) => {
     const pad = e.target.closest(".pad");
     if (!pad) return;
     triggerPad(Number(pad.dataset.pad));
 });
 
-// -------- keys 1-6
+// keybinds 1-6
 document.addEventListener("keydown", (e) => {
     const map = {
         Digit1: 1,
@@ -133,7 +129,7 @@ document.addEventListener("keydown", (e) => {
     triggerPad(padIndex);
 });
 
-// -------- uploads
+// uploads
 async function loadPlayerFromFile(file) {
     await ensureAudioStarted();
     const url = URL.createObjectURL(file);
@@ -166,7 +162,7 @@ upload6?.addEventListener("change", async (e) => {
     if (meta6) meta6.textContent = `Loaded: ${file.name}`;
 });
 
-// -------- panic
+// stop
 stopBtn?.addEventListener("click", () => {
     if (player5) player5.stop();
     if (player6) player6.stop();
