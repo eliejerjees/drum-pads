@@ -115,15 +115,8 @@ header h1 {
 
 main {
     display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: var(--gap);
-    align-items: start;
-}
-
-@media (max-width: 700px) {
-    main {
-        grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr;
+    gap: 14px;
 }
 
 /* Pads */
@@ -131,6 +124,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gap);
+    width: 100%;
 }
 
 .pad {
@@ -241,16 +235,20 @@ main {
     text-overflow: ellipsis;
 }
 
-/* Panel */
+/* File upload styles */
+
 .panel {
-    background: linear-gradient(160deg, #1a1a1f, #121214);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
     display: grid;
-    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    background: transparent;
+    border-radius: 0;
+    border: 0;
 }
 
+/* stack label + input cleanly */
 .row {
     display: grid;
     gap: 8px;
@@ -270,8 +268,8 @@ input[type="file"] {
     font-size: 0.65rem;
     color: var(--muted);
     border: 1px dashed rgba(255, 255, 255, 0.14);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 8px 10px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     cursor: pointer;
 }
