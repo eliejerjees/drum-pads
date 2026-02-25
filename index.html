@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6-Pad Drum + Sample Pads (Tone.js)</title>
+
+    <!-- Tone.js CDN (keep this in HTML so you don't need bundlers) -->
+    <script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <header>
+        <div class="left">
+          <h1>6-Pad Drum w/ 2 Custom Sample Pads</h1>
+        </div>
+
+        <div class="controls">
+          <button
+            id="stopBtn"
+            class="btn danger"
+            title="Stops any ringing sounds"
+          >
+            Off
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="pads" id="pads">
+          <!-- Pad 1 -->
+          <div class="pad" data-pad="1">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Kick</div>
+              <div class="key">Key: 1</div>
+              <div class="meta">MembraneSynth</div>
+            </div>
+          </div>
+
+          <!-- Pad 3 -->
+          <div class="pad" data-pad="3">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Closed Hat</div>
+              <div class="key">Key: 3</div>
+              <div class="meta">Default: MetalSynth</div>
+            </div>
+          </div>
+
+          <!-- Pad 5 -->
+          <div class="pad" data-pad="5">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Sample Pad A</div>
+              <div class="key">Key: 5</div>
+              <div class="meta" id="meta5">Default: whistle-ish</div>
+            </div>
+          </div>
+
+          <!-- Pad 2 -->
+          <div class="pad" data-pad="2">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Snare</div>
+              <div class="key">Key: 2</div>
+              <div class="meta">Noise + pitch</div>
+            </div>
+          </div>
+
+          <!-- Pad 4 -->
+          <div class="pad" data-pad="4">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Open Hat</div>
+              <div class="key">Key: 4</div>
+              <div class="meta">MetalSynth</div>
+            </div>
+          </div>
+
+          <!-- Pad 6 -->
+          <div class="pad" data-pad="6">
+            <div class="pulse"></div>
+            <div class="label">
+              <div class="name">Sample Pad B</div>
+              <div class="key">Key: 6</div>
+              <div class="meta" id="meta6">Default: vocal “hey”</div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <div class="row fileRow">
+            <label>Upload for Sample Pad A (Pad 5)</label>
+            <input id="upload5" type="file" accept="audio/*" />
+          </div>
+
+          <div class="row fileRow">
+            <label>Upload for Sample Pad B (Pad 6)</label>
+            <input id="upload6" type="file" accept="audio/*" />
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <!-- Your JS (loads after HTML so DOM elements exist) -->
+    <script src="./app.js"></script>
+  </body>
+</html>
