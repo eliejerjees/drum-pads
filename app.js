@@ -37,17 +37,22 @@ const hatOpen = new Tone.MetalSynth({
 }).connect(bus);
 
 // Default sounds for pads 5-6 until upload
-const sampleA = new Tone.Synth({
-    oscillator: { type: "sine" },
-    envelope: { attack: 0.001, decay: 0.08, sustain: 0, release: 0.12 },
+const sampleA = new Tone.FMSynth({
+    harmonicity: 2,
+    modulationIndex: 8,
+    envelope: { attack: 0.001, decay: 0.2, sustain: 0, release: 0.1 }
 }).connect(bus);
 
 const sampleB = new Tone.MembraneSynth({
-    pitchDecay: .05,
-    octaves: 6,
+    pitchDecay: .08,
+    octaves: 8,
     oscillator: { type: "sine" },
-    envelope: { attack: 0.001, decay: 0.9, sustain: 0, release: 0.8 },
+    envelope: { attack: 0.001, decay: 1.2, sustain: 0, release: 1 },
 }).connect(bus);
+
+const dist = new Tone.Distortion(0.2).connect(bus);
+sampleB.disconnect();
+sampleB.connect(dist);
 
 let player5 = null;
 let player6 = null;
@@ -97,11 +102,11 @@ async function triggerPad(padIndex) {
             break;
         case 5:
             if (player5) player5.start();
-            else sampleA.triggerAttackRelease("E5", "16n");
+            else sampleA.triggerAttackRelease("C4", "16n");
             break;
         case 6:
             if (player6) player6.start();
-            else sampleB.triggerAttackRelease("C1", "8n");
+            else sampleB.triggerAttackRelease("A-1", "2n");
             break;
     }
 }
