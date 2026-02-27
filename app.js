@@ -1,8 +1,3 @@
-// Minimal 6-pad drum machine (Tone.js)
-// Pads 1-4: synth drums
-// Pads 5-6: optional user-uploaded samples
-// Click pads or press keys 1-6
-
 let started = false;
 
 // Audio chain
